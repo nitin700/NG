@@ -1,0 +1,11 @@
+<?php
+/** @var \NG\Slider\Block\Slide $block  */
+?>
+
+<?php
+echo "nitin";
+foreach ($block->getSlides() as $slide):
+echo "<pre>";
+print_r($slide->getDescription());
+endforeach;
+?>

@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="NG_Slider::slider" title="NG Slider" translate="title" module="NG_Slider" sortOrder="900" resource="NG_Slider::slider" action="slider"/>
+    </menu>
+</config>
