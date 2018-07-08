@@ -12,6 +12,7 @@ class Index extends \Magento\Framework\App\Action\Action
 
         $result = $this->resultFactory->create(ResultFactory::TYPE_PAGE);
         //$result->setContents('Hello Nitin');
+        //echo "<pre>"; print_r($result); exit;
         return $result;
     }
 }

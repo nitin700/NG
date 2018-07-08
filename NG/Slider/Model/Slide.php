@@ -1,14 +1,12 @@
 <?php
 namespace NG\Slider\Model;
+class Slide extends \Magento\Framework\Model\AbstractModel
+{
 
-use Magento\Framework\Model\AbstractModel;
-//use NG\Slider\Model\ResourceModel\Slide as ResourceSlide;
-class Slide extends AbstractModel{
-    /**
-     *
-     */
     protected function _construct()
     {
-       $this->_init(\NG\Slider\Model\ResourceModel\Slide::class );
+        $this->_init('NG\Slider\Model\ResourceModel\Slide');
     }
+
+
 }

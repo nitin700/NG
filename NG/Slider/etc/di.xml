@@ -1,10 +1,23 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
-<type name="Magento\Framework\Console\CommandList">
+    <type name="Magento\Framework\Console\CommandList">
         <arguments>
             <argument name="commands" xsi:type="array">
                 <item name="NgAddSlide" xsi:type="object">NG\Slider\Console\Command\Addslide</item>
             </argument>
         </arguments>
-</type>
+    </type>
+    <virtualType name="NG\Slider\Model\ResourceModel\Slide\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">ng_slider</argument>
+            <argument name="resourceModel" xsi:type="string">NG\Slider\Model\ResourceModel\Slide</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="slider_slide_grid_data_source" xsi:type="string">NG\Slider\Model\ResourceModel\Slide\Collection</item>
+            </argument>
+        </arguments>
+    </type>
 </config>
