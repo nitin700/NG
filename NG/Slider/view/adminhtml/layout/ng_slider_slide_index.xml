@@ -16,6 +16,10 @@
                         <arguments>
                             <argument name="rowUrl" xsi:type="array">
                                 <item name="path" xsi:type="string">*/*/edit</item>
+                                <item name="extraParamsTemplate" xsi:type="array">
+                                    <item name="id" xsi:type="string">getId</item>
+                                    <item name="code" xsi:type="string">getCode</item>
+                                </item>
                             </argument>
                         </arguments>
                         <block class="Magento\Backend\Block\Widget\Grid\Column" as="id">
@@ -27,13 +31,32 @@
                                 <argument name="header_css_class" xsi:type="string">col-id</argument>
                             </arguments>
                         </block>
-                        <block class="Magento\Backend\Block\Widget\Grid\Column" as="description">
+                        <block class="Magento\Backend\Block\Widget\Grid\Column" as="image">
                             <arguments>
-                                <argument name="header" xsi:type="string" translate="true">description</argument>
-                                <argument name="index" xsi:type="string">description</argument>
-                                <argument name="type" xsi:type="string">text</argument>
+                                <argument name="header" xsi:type="string" translate="true">Slide</argument>
+                                <argument name="index" xsi:type="string">image</argument>
+                                <argument name="type" xsi:type="string">image</argument>
+                                <argument name="renderer" xsi:type="string">NG\Slider\Block\Adminhtml\Thumbnail</argument>
                                 <argument name="column_css_class" xsi:type="string">col-id</argument>
                                 <argument name="header_css_class" xsi:type="string">col-id</argument>
+                            </arguments>
+                        </block>
+                        <block class="Magento\Backend\Block\Widget\Grid\Column" as="position">
+                            <arguments>
+                                <argument name="header" xsi:type="string" translate="true">Position</argument>
+                                <argument name="index" xsi:type="string">position</argument>
+                                <argument name="type" xsi:type="string">position</argument>
+                                <argument name="column_css_class" xsi:type="string">col-id</argument>
+                                <argument name="header_css_class" xsi:type="string">col-id</argument>
+                            </arguments>
+                        </block>
+                        <block class="Magento\Backend\Block\Widget\Grid\Column" as="status">
+                            <arguments>
+                                <argument name="header" xsi:type="string" translate="true">Status</argument>
+                                <argument name="type" xsi:type="string">options</argument>
+                                <argument name="options" xsi:type="options" model="NG\Slider\Model\Status"/>
+                                <argument name="index" xsi:type="string">status</argument>
+                                <argument name="id" xsi:type="string">status</argument>
                             </arguments>
                         </block>
                     </block>

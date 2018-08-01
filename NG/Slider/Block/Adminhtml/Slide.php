@@ -12,4 +12,27 @@ class Slide extends \Magento\Backend\Block\Widget\Grid\Container
         $this->_addButtonLabel = __('Create New Slide');
         parent::_construct();
     }
+    /**
+     * Create "New" button
+     *
+     * @return void
+     */
+    protected function _addNewButton()
+    {
+        $this->addButton(
+            'add',
+            [
+                'label' => $this->getAddButtonLabel(),
+                'onclick' => 'setLocation(\'' . $this->getCreateUrl() . '\')',
+                'class' => 'add primary'
+            ]
+        );
+    }
+    /**
+     * @return string
+     */
+    public function getCreateUrl()
+    {
+        return $this->getUrl('*/*/newslide');
+    }
 }

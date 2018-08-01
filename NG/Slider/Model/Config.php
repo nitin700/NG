@@ -6,7 +6,7 @@ namespace NG\Slider\Model;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 
 class Config{
-    cont XML_PATH_ENABLED = 'slider/general/enabled';
+    const XML_PATH_ENABLED = 'slider/general/enabled';
 
     private $config;
 

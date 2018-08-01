@@ -36,7 +36,7 @@ class InstallSchema implements InstallSchemaInterface
                         'ID'
                     )
                     ->addColumn(
-                        'image_url',
+                        'image',
                         Table::TYPE_TEXT,
                         NULL,
                         [   'nullable' => true,
