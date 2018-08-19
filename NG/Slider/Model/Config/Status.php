@@ -1,6 +1,6 @@
 <?php
 
-namespace NG\Slider\Model;
+namespace NG\Slider\Model\Config;
 use Magento\Framework\Option\ArrayInterface;
 class Status implements ArrayInterface
 {
@@ -14,9 +14,8 @@ class Status implements ArrayInterface
         $result = [];
 
         foreach (self::getOptionArray() as $index => $value) {
-            $result[] = ['value' => $index, 'label' => $value];
+            $result[$index] = $value;
         }
-
         return $result;
     }
 
@@ -24,7 +23,5 @@ class Status implements ArrayInterface
     {
         return [self::STATUS_ENABLED => __('Enabled'), self::STATUS_DISABLED => __('Disabled')];
     }
-
-
 
 }

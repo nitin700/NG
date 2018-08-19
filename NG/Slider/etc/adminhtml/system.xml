@@ -9,11 +9,56 @@
             <tab>slider</tab>
             <resource>NG_Slider::slider</resource>
             <group id="general" translate="label" type="text" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1">
-                <label>Slider</label>
+                <label>General Setting</label>
                 <field id="enabled" translate="label" type="select" showInDefault="1" canRestore="1">
                     <label>Enable</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
+            </group>
+            <group id="settings" translate="label" type="text" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Slider Settings</label>
+                <field id="transitionMode" translate="label" type="select" showInDefault="1" canRestore="1">
+                    <label>Transition Mode</label>
+                    <source_model>NG\Slider\Model\Config\Mode</source_model>
+                    <comment>Type of transition between slides</comment>
+                </field>
+                <field id="transitionSpeed" translate="label" type="text" showInDefault="1" canRestore="1">
+                    <label>Transition speed</label>
+                    <comment>enter values in millisecond (e.g 500,600,700.....)</comment>
+                </field>
+                <field id="captions" translate="label" type="select" showInDefault="1" canRestore="1">
+                    <label>Enable Captions</label>
+                    <source_model>NG\Slider\Model\Config\Options</source_model>
+                    <comment>if yes: Slide description display in captions</comment>
+                </field>
+                <field id="controls" translate="label" type="select" showInDefault="1" canRestore="1">
+                    <label>Navigation Controls</label>
+                    <source_model>NG\Slider\Model\Config\Options</source_model>
+                    <comment>to display "Next" - "Prev" controls.</comment>
+                </field>
+                <field id="autoControls" translate="label" type="select" showInDefault="1" canRestore="1">
+                    <label>Auto Controls(Start/Stop)</label>
+                    <source_model>NG\Slider\Model\Config\Options</source_model>
+                    <comment>to display "Start" - "Stop" controls.</comment>
+                </field>
+                <field id="autoControlsCombine" translate="label" type="select" showInDefault="1" canRestore="1">
+                    <label>Auto Controls Combine(Start/Stop)</label>
+                    <source_model>NG\Slider\Model\Config\Options</source_model>
+                    <comment>to combine "Start" - "Stop" controls. only if autocontrols is true</comment>
+                </field>
+                <field id="auto" translate="label" type="select" showInDefault="1" canRestore="1">
+                    <label>Auto Transition Start(Slide)</label>
+                    <source_model>NG\Slider\Model\Config\Options</source_model>
+                    <comment>Slides will automatically transition</comment>
+                </field>
+                <field id="autoStart" translate="label" type="select" showInDefault="1" canRestore="1">
+                    <label>AutoStart Slide Playing</label>
+                    <source_model>NG\Slider\Model\Config\Options</source_model>
+                    <comment> If false, slideshow will start when the "Start" control is clicked</comment>
+                </field>
+            </group>
+            <group id="cron" translate="label" type="text" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>CRON</label>
                 <field id="cron_expression" translate="label comment" type="text" sortOrder="40" showInDefault="1" showInWebsite="0" showInStore="0" canRestore="1">
                     <label>cron expression</label>
                     <comment>text comment</comment>

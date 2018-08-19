@@ -54,7 +54,7 @@
                             <arguments>
                                 <argument name="header" xsi:type="string" translate="true">Status</argument>
                                 <argument name="type" xsi:type="string">options</argument>
-                                <argument name="options" xsi:type="options" model="NG\Slider\Model\Status"/>
+                                <argument name="options" xsi:type="options" model="NG\Slider\Model\Config\Status"/>
                                 <argument name="index" xsi:type="string">status</argument>
                                 <argument name="id" xsi:type="string">status</argument>
                             </arguments>

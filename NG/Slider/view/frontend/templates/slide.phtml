@@ -1,11 +1,49 @@
 <?php
 /** @var \NG\Slider\Block\Slide $block  */
+/** @var \NG\Slider\Model\Config $config  */
 ?>
+<div class='container'>
+        <ul class="ngslider">
 
-<?php
-echo "nitin";
-foreach ($block->getSlides() as $slide):
-echo "<pre>";
-print_r($slide->getDescription());
-endforeach;
-?>
+            <?php
+            foreach ($block->getSlides() as $slide):
+                $slideUrl = "http://magento223local.com/pub/media/" . $slide->getImage();
+                $caption = $slide->getDescription();
+                $url= $slide->getUrl();
+                echo "<li>
+                       <a href='".$url."'><img src='". $slideUrl ."' title='".$caption."'></a>
+                     </li>";
+            endforeach;
+            ?>
+        </ul>
+</div>
+
+<script>// <![CDATA[
+	require(['jquery', 'ngslider'],function($){
+		$(document).ready(function() {
+			$('.ngslider').ngSlider({
+				mode : '<?php echo $block->getConfigValue('mode') ?>',
+                speed :<?php echo $block->getConfigValue('speed') ?>,
+				pause : 4000,
+				controls: <?php echo $block->getConfigValue('controls') ?>,
+                captions :<?php echo $block->getConfigValue('captions') ?>,
+                auto :<?php echo $block->getConfigValue('auto') ?>,
+                autoControls :<?php echo $block->getConfigValue('autoControls') ?>,
+                autoControlsCombine :<?php echo $block->getConfigValue('autoControlsCombine') ?>,
+                autoStart :<?php echo $block->getConfigValue('autoStart') ?>
+			});
+			var windowWidth = $(window).width(),
+				windowHeight = $(window).height(),
+				adjHeight = windowHeight;
+			$('.classy').css({
+				'width': windowWidth + 'px',
+				'height': adjHeight + 'px'
+			});
+			$('.classy video').css({
+				'min-width': windowWidth + 'px',
+				'min-height': adjHeight + 'px'
+			});
+		});
+    });
+	// ]]>
+</script>

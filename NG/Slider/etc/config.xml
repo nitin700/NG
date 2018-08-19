@@ -6,6 +6,20 @@
                 <enabled>0</enabled>
                 <cron_expression>1 2 6 3 8</cron_expression>
             </general>
+            <settings>
+                <jquery>offline</jquery>
+                <transitionMode>fade</transitionMode>
+                <transitionSpeed>500</transitionSpeed>
+                <captions>true</captions>
+                <controls>true</controls>
+                <autoControls>false</autoControls>
+                <autoControlsCombine>false</autoControlsCombine>
+                <auto>true</auto>
+                <autoStart>true</autoStart>
+            </settings>
+            <cron>
+                <cron_expression>1 2 6 3 8</cron_expression>
+            </cron>
         </slider>
     </default>
 </config>

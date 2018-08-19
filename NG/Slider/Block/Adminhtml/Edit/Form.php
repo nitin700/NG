@@ -1,6 +1,10 @@
 <?php
 namespace NG\Slider\Block\Adminhtml\Edit;
-
+use Magento\Backend\Block\Template\Context;
+use Magento\Framework\Registry;
+use Magento\Framework\Data\FormFactory;
+use Magento\Store\Model\System\Store;
+use NG\Slider\Model\Config\Status;
 /**
  * Adminhtml  edit form
  */
@@ -23,11 +27,11 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic
      * @param array $data
      */
     public function __construct(
-        \Magento\Backend\Block\Template\Context $context,
-        \Magento\Framework\Registry $registry,
-        \Magento\Framework\Data\FormFactory $formFactory,
-        \Magento\Store\Model\System\Store $systemStore,
-        \NG\Slider\Model\Status $status,
+        Context $context,
+        Registry $registry,
+        FormFactory $formFactory,
+        Store $systemStore,
+        Status $status,
         array $data = []
     ) {
         $this->_systemStore = $systemStore;
@@ -107,6 +111,17 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic
                 'title' => __('Description'),
                 'required' => false,
                 'note' => __('any description to display on slide')
+            ]
+        );
+        $fieldset->addField(
+            'url',
+            'text',
+            [
+                'name' => 'url',
+                'label' => __('Link'),
+                'title' => __('Link'),
+                'required' => false,
+                'note' => __('Link')
             ]
         );
         $fieldset->addField(

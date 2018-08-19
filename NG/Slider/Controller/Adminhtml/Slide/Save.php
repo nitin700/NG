@@ -5,6 +5,7 @@ use Magento\Backend\App\Action;
 use Magento\MediaStorage\Model\File\UploaderFactory;
 use Magento\Framework\Filesystem;
 use Magento\Framework\Filesystem\Driver\File;
+use Magento\Framework\App\Filesystem\DirectoryList;
 class Save extends Action{
 
     protected $_mediaDirectory;
@@ -26,7 +27,7 @@ class Save extends Action{
     )
     {
         /** @var TYPE_NAME $filesystem */
-        $this->_mediaDirectory = $fileSystem->getDirectoryWrite(\Magento\Framework\App\Filesystem\DirectoryList::MEDIA);
+        $this->_mediaDirectory = $fileSystem->getDirectoryWrite(DirectoryList::MEDIA);
         $this->_fileUploaderFactory = $uploaderFactory;
         $this->_slidesFolderPath = "NG_Slider/";
         $this->_file = $file;

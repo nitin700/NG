@@ -33,6 +33,17 @@ use Magento\Framework\Setup\ModuleContextInterface;
                         ]
                     );
             }
+            if($setup->getConnection()->isTableExists($tableName) == true AND version_compare($context->getVersion(), '1.0.2', '<')) {
+                $table = $setup->getConnection();
+                $table->addColumn(
+                    $tableName,
+                    'url',
+                    [
+                        'type' => Table::TYPE_TEXT,
+                        'comment' => 'Url to navigate on slide click'
+                    ]
+                );
+            }
             $setup->endSetup();
         }
     }
