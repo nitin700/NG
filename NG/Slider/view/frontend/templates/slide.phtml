@@ -4,15 +4,28 @@
 ?>
 <div class='container'>
         <ul class="ngslider">
-
             <?php
+            $imageResizeEnable = $block->getConfigValue('enable');
+            if($imageResizeEnable){
+                $imageWidth = $block->getConfigValue('width');
+                $imageHeight = $block->getConfigValue('height');
+            }
             foreach ($block->getSlides() as $slide):
-                $slideUrl = "http://magento223local.com/pub/media/" . $slide->getImage();
+                $slideUrl = $block->getUrl() . "pub/media/" . $slide->getImage();
+                if($imageResizeEnable){
+                    $block->resize($slide->getImage(),$imageWidth, $imageHeight);
+                }
                 $caption = $slide->getDescription();
                 $url= $slide->getUrl();
-                echo "<li>
-                       <a href='".$url."'><img src='". $slideUrl ."' title='".$caption."'></a>
+                if(empty($url)){
+                    echo "<li>
+                       <img class='ng_wrapper_img' src='". $slideUrl ."' title='".$caption."'>
                      </li>";
+                }else {
+                    echo "<li>
+                       <a href='" . $url . "'><img class='ng_wrapper_img' src='" . $slideUrl . "' title='" . $caption . "'></a>
+                     </li>";
+                }
             endforeach;
             ?>
         </ul>
@@ -30,20 +43,14 @@
                 auto :<?php echo $block->getConfigValue('auto') ?>,
                 autoControls :<?php echo $block->getConfigValue('autoControls') ?>,
                 autoControlsCombine :<?php echo $block->getConfigValue('autoControlsCombine') ?>,
-                autoStart :<?php echo $block->getConfigValue('autoStart') ?>
+                autoStart :<?php echo $block->getConfigValue('autoStart') ?>,
+                adaptiveHeight : true
 			});
-			var windowWidth = $(window).width(),
-				windowHeight = $(window).height(),
-				adjHeight = windowHeight;
-			$('.classy').css({
-				'width': windowWidth + 'px',
-				'height': adjHeight + 'px'
-			});
-			$('.classy video').css({
-				'min-width': windowWidth + 'px',
-				'min-height': adjHeight + 'px'
-			});
+            $(".ng-pager").hide();
 		});
     });
 	// ]]>
 </script>
+<style>
+    .ng_wrapper_img {'max-height':'<?php echo $imageHeight; ?>px';}
+</style>

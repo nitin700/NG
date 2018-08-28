@@ -17,9 +17,12 @@
                 <auto>true</auto>
                 <autoStart>true</autoStart>
             </settings>
-            <cron>
-                <cron_expression>1 2 6 3 8</cron_expression>
-            </cron>
+            <resize_image>
+                <enable>false</enable>
+                <width>1200</width>
+                <height>500</height>
+                <keepAspectRatio>false</keepAspectRatio>
+            </resize_image>
         </slider>
     </default>
 </config>

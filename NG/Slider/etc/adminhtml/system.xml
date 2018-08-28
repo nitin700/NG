@@ -29,7 +29,7 @@
                 <field id="captions" translate="label" type="select" showInDefault="1" canRestore="1">
                     <label>Enable Captions</label>
                     <source_model>NG\Slider\Model\Config\Options</source_model>
-                    <comment>if yes: Slide description display in captions</comment>
+                    <comment>if true: Slide description display in captions</comment>
                 </field>
                 <field id="controls" translate="label" type="select" showInDefault="1" canRestore="1">
                     <label>Navigation Controls</label>
@@ -57,11 +57,20 @@
                     <comment> If false, slideshow will start when the "Start" control is clicked</comment>
                 </field>
             </group>
-            <group id="cron" translate="label" type="text" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1">
-                <label>CRON</label>
-                <field id="cron_expression" translate="label comment" type="text" sortOrder="40" showInDefault="1" showInWebsite="0" showInStore="0" canRestore="1">
-                    <label>cron expression</label>
-                    <comment>text comment</comment>
+            <group id="resize_image" translate="label" type="text" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Resize Image</label>
+                <field id="enable" translate="label comment" type="select" sortOrder="40" showInDefault="1" showInWebsite="0" showInStore="0" canRestore="1">
+                    <label>Image Resize Enable</label>
+                    <source_model>NG\Slider\Model\Config\Options</source_model>
+                    <comment>if true: Slide Images will resize while slider loading in below Height/Width</comment>
+                </field>
+                <field id="width" translate="label comment" type="text" sortOrder="40" showInDefault="1" showInWebsite="0" showInStore="0" canRestore="1">
+                    <label>Resize Width</label>
+                    <comment>Expected slide width(in px)</comment>
+                </field>
+                <field id="height" translate="label comment" type="text" sortOrder="40" showInDefault="1" showInWebsite="0" showInStore="0" canRestore="1">
+                    <label>Resize Height</label>
+                    <comment>Expected slide height(in px)</comment>
                 </field>
             </group>
         </section>

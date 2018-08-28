@@ -15,6 +15,9 @@ class Config{
 							'autoControlsCombine'=>'slider/settings/autoControlsCombine',
 							'auto'=>'slider/settings/auto',
 							'autoStart'=>'slider/settings/autoStart',
+                            'enable'=>'slider/resize_image/enable',
+                            'width'=>'slider/resize_image/width',
+                            'height'=>'slider/resize_image/height'
 	                        );
     private $config;
 
@@ -55,6 +58,15 @@ class Config{
                 return $this->config->getValue($this->optionArray[$configName]);
                 break;
             case "autoStart":
+                return $this->config->getValue($this->optionArray[$configName]);
+                break;
+            case "enable":
+                return $this->config->getValue($this->optionArray[$configName]);
+                break;
+            case "width":
+                return $this->config->getValue($this->optionArray[$configName]);
+                break;
+            case "height":
                 return $this->config->getValue($this->optionArray[$configName]);
                 break;
             default:
