@@ -1,7 +1,17 @@
 <?php
+/*
+ * NG_Slider
+
+ * @category   Banner Slider
+ * @package    NG_Slider
+ * @license    OSL-v3.0
+ * @version    1.0.0
+ */
+ 
 namespace NG\Slider\Controller\Adminhtml\Slide;
 use Magento\Backend\App\Action\Context;
 use Magento\Backend\Model\View\Result\ForwardFactory;
+
 class NewSlide extends \Magento\Backend\App\Action
 {
     /**

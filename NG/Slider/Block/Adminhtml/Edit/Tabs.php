@@ -1,31 +1,43 @@
 <?php
-namespace NG\Slider\Block\Adminhtml\Edit;
-use \Magento\Backend\Block\Widget\Tabs as DefaultTabs;
-use Magento\Framework\Exception\LocalizedException;
+/*
+ * NG_Slider
 
-class Tabs extends DefaultTabs{
+ * @category   Banner Slider
+ * @package    NG_Slider
+ * @license    OSL-v3.0
+ * @version    1.0.0
+ */
+
+namespace NG\Slider\Block\Adminhtml\Edit;
+
+use \Magento\Backend\Block\Widget\Tabs as DefaultTabs;
+
+class Tabs extends DefaultTabs
+{
+
     /**
      * Class constructor
      *
      * @return void
      */
+
     protected function _construct()
     {
         parent::_construct();
         $this->setId('edit_tabs');
         $this->setDestElementId('edit_form');
         $this->setTitle(__('Slide Information'));
-        $this->addTab(
-            'slide_info',
-            [
-                'label' => __('General'),
-                'title' => __('General'),
-                /*'content' => $this->getLayout()->createBlock(
-                    'NG\Slider\Block\Adminhtml\Edit'
-                )->toHtml(),*/
-                'active' => true
-            ]
-        );
+        try {
+            $this->addTab(
+                'slide_info',
+                [
+                    'label' => __('General'),
+                    'title' => __('General'),
+                    'active' => true
+                ]
+            );
+        } catch (\Exception $e) {
+            return $e;
+        }
     }
-
 }

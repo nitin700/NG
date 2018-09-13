@@ -1,11 +1,20 @@
 <?php
+/*
+ * NG_Slider
 
+ * @category   Banner Slider
+ * @package    NG_Slider
+ * @license    OSL-v3.0
+ * @version    1.0.0
+ */
+ 
 namespace NG\Slider\Controller\Adminhtml\Slide;
 use Magento\Backend\App\Action;
 use Magento\MediaStorage\Model\File\UploaderFactory;
 use Magento\Framework\Filesystem;
 use Magento\Framework\Filesystem\Driver\File;
 use Magento\Framework\App\Filesystem\DirectoryList;
+
 class Save extends Action{
 
     protected $_mediaDirectory;

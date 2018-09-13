@@ -1,8 +1,17 @@
 <?php
+/*
+ * NG_Slider
+
+ * @category   Banner Slider
+ * @package    NG_Slider
+ * @license    OSL-v3.0
+ * @version    1.0.0
+ */
 /**
  ** This file is to get configuration for module.
  **/
 namespace NG\Slider\Model;
+
 use Magento\Framework\App\Config\ScopeConfigInterface;
 
 class Config{
@@ -37,7 +46,7 @@ class Config{
     public function getConfigValue($configName){
         switch ($configName){
             case "mode":
-                echo $this->config->getValue($this->optionArray[$configName]);
+                return $this->config->getValue($this->optionArray[$configName]);
                 break;
             case "speed":
                 return $this->config->getValue($this->optionArray[$configName]);

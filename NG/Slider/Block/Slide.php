@@ -1,37 +1,53 @@
 <?php
+
+/*
+ * NG_Slider
+
+ * @category   Banner Slider
+ * @package    NG_Slider
+ * @license    OSL-v3.0
+ * @version    1.0.0
+ */
+
 namespace NG\Slider\Block;
 
 use Magento\Framework\View\Element\Template;
 use NG\Slider\Model\ResourceModel\Slide\CollectionFactory;
 use Magento\Framework\Filesystem;
 use Magento\Framework\App\Filesystem\DirectoryList;
-use NG\Slider\Model\Config;
+use Magento\Framework\UrlInterface;
 use Magento\Framework\Image\AdapterFactory;
-class Slide extends Template{
+use NG\Slider\Model\Config;
+
+class Slide extends Template
+{
     protected $config;
-    protected $_imageFactory;
-    protected $_fileSystem;
+    protected $imageFactory;
+    protected $fileSystem;
+
     public function __construct(
         Template\Context $context,
         CollectionFactory $collectionFactory,
         Filesystem $fileSystem,
         Config $config,
         AdapterFactory $imageFactory,
-        array $data = [])
+        array $data = []
+    )
     {
-       $this->collectionFactory = $collectionFactory;
+        $this->collectionFactory = $collectionFactory;
         $this->config = $config;
-        $this->_imageFactory = $imageFactory;
-        $this->_fileSystem = $fileSystem;
-       parent::__construct($context, $data);
+        $this->imageFactory = $imageFactory;
+        $this->fileSystem = $fileSystem;
+        parent::__construct($context, $data);
     }
 
     /**
      * @return \NG\Slider\Model\Slide[]
      */
-    public function getSlides(){
-        $result = $this->collectionFactory->create()->addFilter('status',1)
-            ->setOrder('position','ASC')
+    public function getSlides()
+    {
+        $result = $this->collectionFactory->create()->addFilter('status', 1)
+            ->setOrder('position', 'ASC')
             ->getItems();
         return $result;
     }
@@ -39,31 +55,40 @@ class Slide extends Template{
     /**
      * @param $configName
      */
-    public function getConfigValue($configName){
+    public function getConfigValue($configName)
+    {
         return $this->config->getConfigValue($configName);
     }
 
     // pass image Name, width and height
+
+    /**
+     * @param $image
+     * @param null $width
+     * @param null $height
+     * @return string
+     * @throws \Exception
+     */
     public function resize($image, $width = null, $height = null)
     {
-        //$absolutePath = $this->_filesystem->getDirectoryRead(\Magento\Framework\App\Filesystem\DirectoryList::MEDIA)->getAbsolutePath('helloworld/images/').$image; //complete path of image
-        $absolutePath = $this->_fileSystem->getDirectoryRead(DirectoryList::MEDIA)->getAbsolutePath().$image;
 
-        $imageResized = $this->_fileSystem->getDirectoryRead(DirectoryList::MEDIA)->getAbsolutePath().$image;
+        $absolutePath = $this->fileSystem->getDirectoryRead(DirectoryList::MEDIA)->getAbsolutePath().$image;
+        $imageResized = $this->fileSystem->getDirectoryRead(DirectoryList::MEDIA)->getAbsolutePath().$image;
         //create image factory...
-        $imageResize = $this->_imageFactory->create();
+        $imageResize = $this->imageFactory->create();
         $imageResize->open($absolutePath);
         $imageResize->constrainOnly(TRUE);
         $imageResize->keepTransparency(TRUE);
         $imageResize->keepFrame(FALSE);
         $imageResize->keepAspectRatio(FALSE);
-        $imageResize->resize($width,$height);
+        $imageResize->resize($width, $height);
         //destination folder
         $destination = $imageResized ;
         //save image
         $imageResize->save($destination);
 
-        $resizedURL = $this->_storeManager->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA).'resized/'.$width.'/'.$image;
+        $resizedURL = $this->_storeManager->getStore()->getBaseUrl(
+            UrlInterface::URL_TYPE_MEDIA).'resized/'.$width.'/'.$image;
         return $resizedURL;
     }
 }

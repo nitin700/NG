@@ -1,7 +1,17 @@
 <?php
+/*
+ * NG_Slider
+
+ * @category   Banner Slider
+ * @package    NG_Slider
+ * @license    OSL-v3.0
+ * @version    1.0.0
+ */
 
 namespace NG\Slider\Model\Config;
+
 use Magento\Framework\Option\ArrayInterface;
+
 class Status implements ArrayInterface
 {
 
@@ -21,7 +31,7 @@ class Status implements ArrayInterface
 
     public static function getOptionArray()
     {
-        return [self::STATUS_ENABLED => __('Enabled'), self::STATUS_DISABLED => __('Disabled')];
+        return [self::STATUS_ENABLED => __('Active'), self::STATUS_DISABLED => __('Deactive')];
     }
 
 }

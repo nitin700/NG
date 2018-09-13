@@ -4,7 +4,6 @@
         <slider>
             <general>
                 <enabled>0</enabled>
-                <cron_expression>1 2 6 3 8</cron_expression>
             </general>
             <settings>
                 <jquery>offline</jquery>

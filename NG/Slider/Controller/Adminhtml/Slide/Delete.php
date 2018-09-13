@@ -1,8 +1,20 @@
 <?php
+/*
+ * NG_Slider
+
+ * @category   Banner Slider
+ * @package    NG_Slider
+ * @license    OSL-v3.0
+ * @version    1.0.0
+ */
+
 namespace NG\Slider\Controller\Adminhtml\Slide;
+
 use Magento\Backend\App\Action;
 use NG\Slider\Model\Slide;
-class Delete extends Action{
+
+class Delete extends Action
+{
 
     protected $model;
 
@@ -11,6 +23,10 @@ class Delete extends Action{
         $this->model = $model;
         parent::__construct($context);
     }
+
+    /**
+     * @return bool
+     */
     protected function _isAllowed()
     {
         return $this->_authorization->isAllowed('NG_Slider::delete');
@@ -37,7 +53,7 @@ class Delete extends Action{
                 return $resultRedirect->setPath('*/*/index', ['id' => $id]);
             }
         }
-        $this->messageManager->addError(__('We can\'t find a post to delete.'));
+        $this->messageManager->addError(__('We can\'t find a slide to delete.'));
         return $resultRedirect->setPath('*/*/');
     }
 }

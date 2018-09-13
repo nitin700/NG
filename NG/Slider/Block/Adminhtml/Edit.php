@@ -1,15 +1,28 @@
 <?php
+
+/*
+ * NG_Slider
+
+ * @category   Banner Slider
+ * @package    NG_Slider
+ * @license    OSL-v3.0
+ * @version    1.0.0
+ */
+
 namespace NG\Slider\Block\Adminhtml;
+
+use Magento\Backend\Block\Widget\Form\Container;
 use Magento\Backend\Block\Widget\Context;
 use Magento\Framework\Registry;
-class Edit extends \Magento\Backend\Block\Widget\Form\Container
+
+class Edit extends Container
 {
     /**
      * Core registry
      *
      * @var \Magento\Framework\Registry
      */
-    protected $_coreRegistry = null;
+    protected $coreRegistry = null;
 
     /**
      * @param \Magento\Backend\Block\Widget\Context $context
@@ -17,11 +30,11 @@ class Edit extends \Magento\Backend\Block\Widget\Form\Container
      * @param array $data
      */
     public function __construct(
-         Context $context,
-         Registry $registry,
+        Context $context,
+        Registry $registry,
         array $data = []
     ) {
-        $this->_coreRegistry = $registry;
+        $this->coreRegistry = $registry;
         parent::__construct($context, $data);
     }
 
@@ -63,7 +76,7 @@ class Edit extends \Magento\Backend\Block\Widget\Form\Container
             $this->buttonList->remove('delete');
         }
 
-        if ($this->_coreRegistry->registry('slider_slide')->getId()) {
+        if ($this->coreRegistry->registry('slider_slide')->getId()) {
             $this->buttonList->remove('reset');
         }
     }
@@ -75,8 +88,10 @@ class Edit extends \Magento\Backend\Block\Widget\Form\Container
      */
     public function getHeaderText()
     {
-        if ($this->_coreRegistry->registry('slider_slide')->getId()) {
-            return __("Edit Slide '%1'", $this->escapeHtml($this->_coreRegistry->registry('slider_slide')->getTitle()));
+        if ($this->coreRegistry->registry('slider_slide')->getId()) {
+            return __("Edit Slide '%1'",
+                $this->escapeHtml($this->coreRegistry->registry('slider_slide')->getTitle())
+            );
         } else {
             return __('New Slide');
         }

@@ -1,8 +1,18 @@
 <?php
+/*
+ * NG_Slider
 
+ * @category   Banner Slider
+ * @package    NG_Slider
+ * @license    OSL-v3.0
+ * @version    1.0.0
+ */
+ 
 namespace NG\Slider\Controller\Adminhtml\Slide;
+
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\View\Result\PageFactory;
+
 class Index extends \Magento\Backend\App\Action
 {
     protected $resultPageFactory = false;
@@ -32,6 +42,5 @@ class Index extends \Magento\Backend\App\Action
 
         return $resultPage;
     }
-
 
 }

@@ -1,41 +1,44 @@
 <?php
+/*
+ * NG_Slider
+
+ * @category   Banner Slider
+ * @package    NG_Slider
+ * @license    OSL-v3.0
+ * @version    1.0.0
+ */
+
 namespace NG\Slider\Block\Adminhtml\Edit;
+
 use Magento\Backend\Block\Template\Context;
+use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Registry;
 use Magento\Framework\Data\FormFactory;
-use Magento\Store\Model\System\Store;
+use Magento\Backend\Block\Widget\Form\Generic;
 use NG\Slider\Model\Config\Status;
+
 /**
  * Adminhtml  edit form
  */
-class Form extends \Magento\Backend\Block\Widget\Form\Generic
+
+class Form extends Generic
 {
-
-    /**
-     * @var \Magento\Store\Model\System\Store
-     */
-    protected $_systemStore;
-
-    protected $_status;
+    protected $status;
 
     /**
      * @param \Magento\Backend\Block\Template\Context $context
      * @param \Magento\Framework\Registry $registry
      * @param \Magento\Framework\Data\FormFactory $formFactory
-     * @param \Magento\Cms\Model\Wysiwyg\Config $wysiwygConfig
-     * @param \Magento\Store\Model\System\Store $systemStore
      * @param array $data
      */
     public function __construct(
         Context $context,
         Registry $registry,
         FormFactory $formFactory,
-        Store $systemStore,
         Status $status,
         array $data = []
     ) {
-        $this->_systemStore = $systemStore;
-        $this->_status = $status;
+        $this->status = $status;
         parent::__construct($context, $registry, $formFactory, $data);
     }
 
@@ -54,7 +57,7 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic
     /**
      * Prepare form
      *
-     * @return $this
+     * @return \Exception|LocalizedException
      */
     protected function _prepareForm()
     {
@@ -62,9 +65,20 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic
         $model = $this->_coreRegistry->registry('slider_slide');
 
         /** @var \Magento\Framework\Data\Form $form */
-        $form = $this->_formFactory->create(
-            ['data' => ['id' => 'edit_form', 'action' => $this->getData('action'), 'method' => 'post', 'enctype' => 'multipart/form-data']]
-        );
+        try {
+            $form = $this->_formFactory->create(
+                [
+                    'data' => [
+                        'id' => 'edit_form',
+                        'action' => $this->getData('action'),
+                        'method' => 'post',
+                        'enctype' => 'multipart/form-data'
+                    ]
+                ]
+            );
+        } catch (LocalizedException $e) {
+            return $e;
+        }
 
         $form->setHtmlIdPrefix('ngslide_');
 
@@ -90,7 +104,7 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic
         )->setAfterElementHtml('
         <script>
             require([
-                 "jquery",
+                 "jquery"
             ], function($){
                 $(document).ready(function () {
                     if($("#ngslide_image").attr("value")){
@@ -98,7 +112,7 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic
                     }else{
                         $("#ngslide_image").addClass("required-file");
                     }
-                    $( "#ngslide_image" ).attr( "accept", "image/x-png,image/jpeg,image/jpg,image/png" );
+                    $( "#ngslide_image" ).attr( "accept","image/x-png,image/jpeg,image/jpg,image/png" );
                 });
               });
        </script>');
@@ -143,7 +157,7 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic
                 'title' => __('Status'),
                 'name' => 'status',
                 'required' => true,
-                'options' => $this->_status->toOptionArray(),
+                'options' => $this->status->toOptionArray(),
                 'note' => __('Select enable to activate slide')
             ]
         );

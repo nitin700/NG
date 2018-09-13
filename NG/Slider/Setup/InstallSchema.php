@@ -1,4 +1,13 @@
 <?php
+/*
+ * NG_Slider
+
+ * @category   Banner Slider
+ * @package    NG_Slider
+ * @license    OSL-v3.0
+ * @version    1.0.0
+ */
+
 namespace NG\Slider\Setup;
 
 use Magento\Framework\Setup\InstallSchemaInterface;
@@ -23,6 +32,7 @@ class InstallSchema implements InstallSchemaInterface
         if($setup->getConnection()->isTableExists($tableName) != true) {
             /**create table **/
             /** @var TYPE_NAME $table */
+            try {
                 $table = $setup->getConnection()->newTable($tableName)
                     ->addColumn(
                         'id',
@@ -39,7 +49,7 @@ class InstallSchema implements InstallSchemaInterface
                         'image',
                         Table::TYPE_TEXT,
                         NULL,
-                        [   'nullable' => true,
+                        ['nullable' => true,
                             'default' => ''
                         ],
                         'Image url for slide'
@@ -66,7 +76,10 @@ class InstallSchema implements InstallSchemaInterface
                     )
                     ->setOption('type', 'InnoDB')
                     ->setOption('charset', 'utf8');
-                $setup->getConnection()->createTable($table);
+            } catch (\Zend_Db_Exception $e) {
+                return $e;
+            }
+            $setup->getConnection()->createTable($table);
         }
         $setup->endSetup();
     }
