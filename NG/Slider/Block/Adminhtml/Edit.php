@@ -89,7 +89,8 @@ class Edit extends Container
     public function getHeaderText()
     {
         if ($this->coreRegistry->registry('slider_slide')->getId()) {
-            return __("Edit Slide '%1'",
+            return __(
+                "Edit Slide '%1'",
                 $this->escapeHtml($this->coreRegistry->registry('slider_slide')->getTitle())
             );
         } else {

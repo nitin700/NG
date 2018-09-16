@@ -1,7 +1,7 @@
 <?php
-/*
- * NG_Slider
 
+  /*
+ * NG_Slider
  * @category   Banner Slider
  * @package    NG_Slider
  * @license    OSL-v3.0
@@ -10,11 +10,12 @@
  
 namespace NG\Slider\Model\ResourceModel;
 
-class Slide extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
+use Magento\Framework\Model\ResourceModel\Db\AbstractDb;
+
+class Slide extends AbstractDb
 {
     protected function _construct()
     {
         $this->_init('ng_slider', 'id');
     }
-
 }

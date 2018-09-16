@@ -1,5 +1,6 @@
 <?php
-/*
+
+ /*
  * NG_Slider
 
  * @category   Banner Slider

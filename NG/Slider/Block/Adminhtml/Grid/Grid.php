@@ -65,6 +65,7 @@ class Grid extends Extended
                 'header' => __('ID'),
                 'type' => 'number',
                 'index' => 'id',
+                'filter' => false,
                 'header_css_class' => 'col-id',
                 'column_css_class' => 'col-id'
              ]
@@ -86,6 +87,7 @@ class Grid extends Extended
             [
                 'header' => __('Position'),
                 'index' => 'position',
+                'filter' => false,
                 'class' => 'xxx'
             ]
         );

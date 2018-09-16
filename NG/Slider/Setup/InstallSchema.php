@@ -1,7 +1,7 @@
 <?php
-/*
- * NG_Slider
 
+ /*
+ * NG_Slider
  * @category   Banner Slider
  * @package    NG_Slider
  * @license    OSL-v3.0
@@ -20,7 +20,7 @@ use Magento\Framework\DB\Ddl\Table;
  */
 class InstallSchema implements InstallSchemaInterface
 {
-    /**
+    /*
      * @param SchemaSetupInterface $setup
      * @param ModuleContextInterface $context
      */
@@ -28,16 +28,17 @@ class InstallSchema implements InstallSchemaInterface
     {
         $setup->startSetup();
         $tableName = $setup->getTable("ng_slider");
-// check if table does not exist;
-        if($setup->getConnection()->isTableExists($tableName) != true) {
-            /**create table **/
-            /** @var TYPE_NAME $table */
+        if ($setup->getConnection()->isTableExists($tableName) != true) {
+            /*
+             * create table
+             * @var TYPE_NAME $table
+             */
             try {
                 $table = $setup->getConnection()->newTable($tableName)
                     ->addColumn(
                         'id',
                         Table::TYPE_INTEGER,
-                        NULL,
+                        null,
                         ['identity' => true,
                             'unsigned' => true,
                             'primary' => true,
@@ -48,7 +49,7 @@ class InstallSchema implements InstallSchemaInterface
                     ->addColumn(
                         'image',
                         Table::TYPE_TEXT,
-                        NULL,
+                        null,
                         ['nullable' => true,
                             'default' => ''
                         ],
@@ -57,7 +58,7 @@ class InstallSchema implements InstallSchemaInterface
                     ->addColumn(
                         'description',
                         Table::TYPE_TEXT,
-                        NULL,
+                        null,
                         [
                             'nullable' => true,
                             'default' => ''
@@ -79,8 +80,13 @@ class InstallSchema implements InstallSchemaInterface
             } catch (\Zend_Db_Exception $e) {
                 return $e;
             }
-            $setup->getConnection()->createTable($table);
+            try {
+                $setup->getConnection()->createTable($table);
+            } catch (\Zend_Db_Exception $e) {
+                return $e;
+            }
         }
         $setup->endSetup();
+        return true;
     }
 }

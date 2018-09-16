@@ -25,8 +25,7 @@ class Index extends \Magento\Backend\App\Action
     public function __construct(
         Context $context,
         PageFactory $resultPageFactory
-    )
-    {
+    ) {
         parent::__construct($context);
         $this->resultPageFactory = $resultPageFactory;
     }
@@ -39,8 +38,6 @@ class Index extends \Magento\Backend\App\Action
         $resultPage = $this->resultPageFactory->create();
         $resultPage->getConfig()->getTitle()->prepend(__('NG Slider'));
         $resultPage->getConfig()->getTitle()->unsetValue('Magento Admin');
-
         return $resultPage;
     }
-
 }

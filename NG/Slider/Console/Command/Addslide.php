@@ -17,8 +17,9 @@ use Symfony\Component\Console\Output\OutputInterface;
 use NG\Slider\Model\SlideFactory;
 use Magento\Framework\Console\Cli;
 
-class Addslide extends Command{
-    const  INPUT_KEY_IMAGE = "image_url";
+class Addslide extends Command
+{
+    const  INPUT_KEY_IMAGE = "image";
     const  INPUT_KEY_DESCRIPTION = "description";
     const  INPUT_KEY_POSITION = "position";
     const  INPUT_KEY_LINK = "url";
@@ -63,9 +64,10 @@ class Addslide extends Command{
         parent::configure();
     }
 
-    protected function execute(InputInterface $input , OutputInterface $output){
+    protected function execute(InputInterface $input, OutputInterface $output)
+    {
         $slide = $this->slideFactory->create();
-        $slide->setImageUrl($input->getArgument(self::INPUT_KEY_IMAGE));
+        $slide->setImage($input->getArgument(self::INPUT_KEY_IMAGE));
         $slide->setDescription($input->getArgument(self::INPUT_KEY_DESCRIPTION));
         $slide->setPosition($input->getArgument(self::INPUT_KEY_POSITION));
         $slide->setStatus($input->getArgument(self::INPUT_KEY_STATUS));
@@ -74,5 +76,4 @@ class Addslide extends Command{
         $slide->save();
         return Cli::RETURN_SUCCESS;
     }
-
 }

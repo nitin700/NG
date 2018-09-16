@@ -88,7 +88,8 @@ class Slide extends Template
         $imageResize->save($destination);
 
         $resizedURL = $this->_storeManager->getStore()->getBaseUrl(
-            UrlInterface::URL_TYPE_MEDIA).'resized/'.$width.'/'.$image;
+            UrlInterface::URL_TYPE_MEDIA
+        ) . 'resized/'.$width.'/'.$image;
         return $resizedURL;
     }
 }

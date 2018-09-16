@@ -1,7 +1,7 @@
 <?php
-/*
- * NG_Slider
 
+ /*
+ * NG_Slider
  * @category   Banner Slider
  * @package    NG_Slider
  * @license    OSL-v3.0
@@ -18,7 +18,9 @@ class Status implements ArrayInterface
     const STATUS_ENABLED = 1;
     const STATUS_DISABLED = 0;
 
-
+    /**
+     * @return array
+     */
     public function toOptionArray()
     {
         $result = [];
@@ -29,9 +31,11 @@ class Status implements ArrayInterface
         return $result;
     }
 
+    /**
+     * @return array
+     */
     public static function getOptionArray()
     {
         return [self::STATUS_ENABLED => __('Active'), self::STATUS_DISABLED => __('Deactive')];
     }
-
 }
