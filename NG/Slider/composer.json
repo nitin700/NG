@@ -14,10 +14,20 @@
     "magento/module-customer": "100.1.*",
     "magento/module-rss": "100.1.*"
   },
+  "keywords": [
+        "magento",
+        "magento2",
+        "slider",
+        "banner",
+        "promotion",
+        "event",
+        "Promotional Sale",
+		"Offers promotion"
+    ],
   "type": "magento2-module",
   "repositories": [
     {
-      "type": "git",
+      "type": "composer",
       "url": "https://github.com/nitin700/NG.git"
     }
   ],
