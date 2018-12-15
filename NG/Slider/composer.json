@@ -26,23 +26,27 @@
     ],
   "type": "magento2-module",
   "repositories": [
-    {
-      "type": "composer",
-      "url": "https://github.com/nitin700/NG.git"
-    }
-  ],
+		{
+		  "type": "git",
+		  "url": "https://github.com/nitin700/NG.git"
+		}
+    ],
     "authors":[
         {
             "name":"Nitin Gautam",
-            "email":"nitin.gautam070@gmai.com"
+            "email":"nitin.gautam070@gmai.com",
+			"role": "Developer"
         }
     ],
-  "autoload": {
-    "files": [
-      "registration.php"
-    ],
-    "psr-4": {
-      "NG\\Slider\\": ""
+    "autoload": {
+		"files": [
+		  "registration.php"
+		],
+		"psr-4": {
+		  "NG\\Slider\\": ""
+		}
+    },
+	"support": {
+        "email": "nitin.gautam070@gmai.com"
     }
-  }
 }
