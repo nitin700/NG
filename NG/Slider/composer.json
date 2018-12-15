@@ -18,9 +18,15 @@
   "repositories": [
     {
       "type": "git",
-      "url": "https://github.com/nitin700/NG"
+      "url": "https://github.com/nitin700/NG.git"
     }
   ],
+    "authors":[
+        {
+            "name":"Nitin Gautam",
+            "email":"nitin.gautam070@gmai.com"
+        }
+    ],
   "autoload": {
     "files": [
       "registration.php"
