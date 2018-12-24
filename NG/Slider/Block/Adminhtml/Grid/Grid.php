@@ -30,6 +30,7 @@ class Grid extends Extended
         $this->gridFactory = $gridFactory;
         $this->status = $status;
         $this->moduleManager = $moduleManager;
+        $this->setFilterVisibility(false);
         parent::__construct($context, $backendHelper, $data);
     }
    
@@ -99,6 +100,7 @@ class Grid extends Extended
                 'index' => 'status',
                 'class' => 'xxx',
                 'type' => 'options',
+                'filter' => false,
                 'options' => $this->status->getOptionArray()
             ]
         );

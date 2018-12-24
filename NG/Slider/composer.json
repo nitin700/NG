@@ -3,45 +3,50 @@
   "description": "Banner Slider Module for magento2 store to showcase your best offers, products or upcoming events etc..",
   "version": "1.0.0",
   "license": "OSL-3.0",
-  "require": {
-    "php": "~7.0.2|~7.1.0|~7.2.0",
-    "magento/module-backend": "100.1.*",
-    "magento/framework": "100.1.*",
-    "magento/module-media-storage": "100.1.*",
-  },
-  "keywords": [
-        "magento",
-        "magento2",
-        "slider",
-        "banner",
-        "promotion",
-        "event",
-        "Promotional Sale",
-		"Offers promotion"
-    ],
   "type": "magento2-module",
-  "repositories": [
-		{
-		  "type": "git",
-		  "url": "https://github.com/nitin700/NG.git"
-		}
-    ],
-    "authors":[
-        {
-            "name":"Nitin Gautam",
-            "email":"nitin.gautam070@gmail.com",
-			"role": "Developer"
-        }
-    ],
-    "autoload": {
-		"files": [
-		  "registration.php"
-		],
-		"psr-4": {
-		  "NG\\Slider\\": ""
-		}
-    },
-	"support": {
-        "email": "nitin.gautam070@gmail.com"
+  "keywords": [
+    "magento 2 Banner",
+    "magento2 Banner",
+    "magento 2 Slider",
+    "magento2 Slider",
+    "Magento 2 Home Slider",
+    "Magento2 Home Slider",
+    "Magento 2 Home Page Slider",
+    "Magento2 Home Page Slider",
+    "magento 2 Promotional slider",
+    "magento2 Promotional slider",
+    "magento 2 image slider",
+    "magento2 image slider",
+    "magento 2 NG slider",
+    "magento2 NG slider",
+    "magento",
+    "magento2",
+    "slider",
+    "banner",
+    "promotion",
+    "event",
+    "Promotional Sale",
+    "Offers promotion"
+  ],
+  "authors": [
+    {
+      "name": "Nitin Gautam",
+      "email": "nitin.gautam070@gmail.com",
+      "role": "Magento Developer"
     }
+  ],
+  "repositories": [
+    {
+      "type": "git",
+      "url": "https://github.com/nitin700/NG/tree/NG_Slider/NG/Slider"
+    }
+  ],
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "NG\\Slider\\": ""
+    }
+  }
 }

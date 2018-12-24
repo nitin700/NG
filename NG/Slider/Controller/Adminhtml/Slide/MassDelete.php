@@ -17,6 +17,7 @@ use Magento\Framework\Controller\ResultFactory;
 class MassDelete extends Action
 {
     protected $collectionFactory;
+    protected $_publicActions = ['massdelete'];
 
      /*
      * MassDelete constructor.

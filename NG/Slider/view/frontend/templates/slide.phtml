@@ -10,18 +10,22 @@
  
 /** @var \NG\Slider\Block\Slide $block  */
 /** @var \NG\Slider\Model\Config $config  */
+
+$moduleEnable = $block->getConfigValue('isModuleEnabled');
+
+if(isset($moduleEnable) && $moduleEnable == true) {
 ?>
 <div class='container'>
         <ul class="ngslider">
             <?php
-            $imageResizeEnable = $block->getConfigValue('enable');
-            if($imageResizeEnable){
+            $imageResizeEnable = $block->getConfigValue('isResizeEnable');
+            if(isset($imageResizeEnable) && ($imageResizeEnable == 'true')) {
                 $imageWidth = $block->getConfigValue('width');
                 $imageHeight = $block->getConfigValue('height');
             }
             foreach ($block->getSlides() as $slide):
                 $slideUrl = $block->getUrl() . "pub/media/" . $slide->getImage();
-                if($imageResizeEnable){
+                if(isset($imageResizeEnable) && $imageResizeEnable == 'true'){
                     $block->resize($slide->getImage(),$imageWidth, $imageHeight);
                 }
                 $caption = $slide->getDescription();
@@ -61,5 +65,10 @@
 	// ]]>
 </script>
 <style>
-    .ng_wrapper_img {'max-height':'<?php echo $imageHeight; ?>px';}
+    <?php if(isset($imageResizeEnable) && ($imageResizeEnable == 'true')) { ?>
+    .ng_wrapper_img {max-height:<?php echo $imageHeight; ?>px;}
+    <?php } else{ ?>
+    .ng_wrapper_img {max-height:100%;}
+    <?php } ?>
 </style>
+<?php } ?>

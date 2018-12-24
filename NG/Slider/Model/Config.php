@@ -15,6 +15,7 @@ use Magento\Framework\App\Config\ScopeConfigInterface;
 class Config
 {
     private $optionArray = array(
+        'isModuleEnabled'=>'slider/general/enabled',
         'mode'=>'slider/settings/transitionMode',
         'speed'=>'slider/settings/transitionSpeed',
         'captions'=>'slider/settings/captions',
@@ -23,9 +24,9 @@ class Config
         'autoControlsCombine'=>'slider/settings/autoControlsCombine',
         'auto'=>'slider/settings/auto',
         'autoStart'=>'slider/settings/autoStart',
-        'enable'=>'slider/resize_image/enable',
-        'width'=>'slider/resize_image/width',
-        'height'=>'slider/resize_image/height'
+        'isResizeEnable'=>'slider/resizeimage/enable',
+        'width'=>'slider/resizeimage/width',
+        'height'=>'slider/resizeimage/height'
     );
 
     private $config;
@@ -38,52 +39,12 @@ class Config
         return $this->config = $config;
     }
 
-    public function isEnabled()
-    {
-        return $this->config->getValue(XML_PATH_ENABLED);
-    }
-
     /**
      * @param $configName
+     * @return string
      */
     public function getConfigValue($configName)
     {
-        switch ($configName) {
-            case "mode":
-                return $this->config->getValue($this->optionArray[$configName]);
-                break;
-            case "speed":
-                return $this->config->getValue($this->optionArray[$configName]);
-                break;
-            case "captions":
-                return $this->config->getValue($this->optionArray[$configName]);
-                break;
-            case "controls":
-                return $this->config->getValue($this->optionArray[$configName]);
-                break;
-            case "autoControls":
-                return $this->config->getValue($this->optionArray[$configName]);
-                break;
-            case "autoControlsCombine":
-                return $this->config->getValue($this->optionArray[$configName]);
-                break;
-            case "auto":
-                return $this->config->getValue($this->optionArray[$configName]);
-                break;
-            case "autoStart":
-                return $this->config->getValue($this->optionArray[$configName]);
-                break;
-            case "enable":
-                return $this->config->getValue($this->optionArray[$configName]);
-                break;
-            case "width":
-                return $this->config->getValue($this->optionArray[$configName]);
-                break;
-            case "height":
-                return $this->config->getValue($this->optionArray[$configName]);
-                break;
-            default:
-                return false;
-        }
+        return $this->config->getValue($this->optionArray[$configName]);
     }
 }

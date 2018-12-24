@@ -13,7 +13,6 @@ namespace NG\Slider\Block;
 
 use Magento\Framework\View\Element\Template;
 use NG\Slider\Model\ResourceModel\Slide\CollectionFactory;
-use Magento\Framework\Filesystem;
 use Magento\Framework\App\Filesystem\DirectoryList;
 use Magento\Framework\UrlInterface;
 use Magento\Framework\Image\AdapterFactory;
@@ -28,16 +27,14 @@ class Slide extends Template
     public function __construct(
         Template\Context $context,
         CollectionFactory $collectionFactory,
-        Filesystem $fileSystem,
         Config $config,
         AdapterFactory $imageFactory,
         array $data = []
-    )
-    {
+    ) {
         $this->collectionFactory = $collectionFactory;
         $this->config = $config;
         $this->imageFactory = $imageFactory;
-        $this->fileSystem = $fileSystem;
+        $this->fileSystem = $context->getFilesystem();
         parent::__construct($context, $data);
     }
 

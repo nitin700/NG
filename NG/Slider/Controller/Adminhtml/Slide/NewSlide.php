@@ -19,6 +19,7 @@ class NewSlide extends \Magento\Backend\App\Action
      * @var \Magento\Backend\Model\View\Result\Forward
      */
     protected $resultForwardFactory;
+    protected $_publicActions = ['newslide'];
 
     /**
      * NewSlide constructor.

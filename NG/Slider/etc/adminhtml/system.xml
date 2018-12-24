@@ -57,7 +57,7 @@
                     <comment> If false, slideshow will start when the "Start" control is clicked</comment>
                 </field>
             </group>
-            <group id="resize_image" translate="label" type="text" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1">
+            <group id="resizeimage" translate="label" type="text" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>Resize Image</label>
                 <field id="enable" translate="label comment" type="select" sortOrder="40" showInDefault="1" showInWebsite="0" showInStore="0" canRestore="1">
                     <label>Image Resize Enable</label>

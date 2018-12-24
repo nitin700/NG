@@ -57,8 +57,8 @@ class Addslide extends Command
                 "Slide Target Url"
             )->addArgument(
                 self::INPUT_KEY_STATUS,
-				InputArgument::OPTIONAL,
-				"1 = active 0 = deactive"
+                InputArgument::OPTIONAL,
+                "1 = active 0 = deactive"
             );
         $this->setDescription('Command to add slide for NG Slider');
         parent::configure();

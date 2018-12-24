@@ -13,7 +13,6 @@ namespace NG\Slider\Controller\Adminhtml\Slide;
 use Magento\Backend\App\Action;
 use Magento\Framework\View\Result\PageFactory;
 use Magento\Framework\Registry;
-use Magento\Backend\Model\Session;
 use NG\Slider\Model\Slide;
 
 class Edit extends Action
@@ -26,6 +25,7 @@ class Edit extends Action
     protected $coreRegistry = null;
     protected $resultPageFactory;
     protected $session;
+    protected $_publicActions = ['edit'];
 
     /*
      * Edit constructor.
@@ -39,12 +39,11 @@ class Edit extends Action
         Action\Context $context,
         PageFactory $resultPageFactory,
         Registry $registry,
-        Session $session,
         Slide $model
     ) {
         $this->resultPageFactory = $resultPageFactory;
         $this->coreRegistry = $registry;
-        $this->session = $session;
+        $this->session = $context->getSession();
         $this->model = $model;
         parent::__construct($context);
     }

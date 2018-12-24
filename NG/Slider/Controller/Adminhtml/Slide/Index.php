@@ -16,6 +16,7 @@ use Magento\Framework\View\Result\PageFactory;
 class Index extends \Magento\Backend\App\Action
 {
     protected $resultPageFactory = false;
+    protected $_publicActions = ['index'];
 
     /**
      * Index constructor.

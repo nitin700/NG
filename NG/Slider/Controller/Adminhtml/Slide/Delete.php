@@ -18,6 +18,7 @@ class Delete extends Action
 {
 
     protected $model;
+	protected $_publicActions = ['delete'];
 
     public function __construct(Action\Context $context, Slide $model)
     {

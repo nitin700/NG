@@ -15,7 +15,6 @@ use Magento\MediaStorage\Model\File\UploaderFactory;
 use Magento\Framework\Filesystem;
 use Magento\Framework\Filesystem\Driver\File;
 use Magento\Framework\App\Filesystem\DirectoryList;
-use Magento\Backend\Model\Session;
 use NG\Slider\Model\Slide;
 
 class Save extends Action
@@ -26,6 +25,7 @@ class Save extends Action
     protected $slidesFolderPath;
     protected $file;
     protected $session;
+    protected $allowedExt = array('jpg', 'png', 'jpeg');
 
     /*
      * Save constructor.
@@ -42,14 +42,13 @@ class Save extends Action
         Filesystem $fileSystem,
         UploaderFactory $uploaderFactory,
         File $file,
-        Session $session,
         Slide $model
     ) {
         $this->mediaDirectory = $fileSystem->getDirectoryWrite(DirectoryList::MEDIA);
         $this->fileUploaderFactory = $uploaderFactory;
         $this->slidesFolderPath = "NG_Slider/";
         $this->file = $file;
-        $this->session = $session;
+        $this->session = $context->getSession();
         $this->model = $model;
         parent::__construct($context);
     }
@@ -61,27 +60,48 @@ class Save extends Action
     public function execute()
     {
         $data = $this->getRequest()->getPostValue();
+        $resultRedirect = $this->resultRedirectFactory->create();
+        $fileExist = $this->getRequest()->getFiles('image')['tmp_name'];
         if ($data) {
             $model = $this->model;
             $id = $this->getRequest()->getParam('id');
             if ($id) {
                 $model->load($id);
+            };
+            /*
+             * below code to manage unsupported image extension
+             */
+            if ($fileExist AND !empty($fileExist)) {
+                $uploader = $this->fileUploaderFactory->create(['fileId' => 'image']);
+                $uploadedExt = $uploader->getFileExtension();
+                if (!in_array($uploadedExt, $this->allowedExt)) {
+                    $this->messageManager->addError("Invalid File Upload...");
+                    if ($id) {
+                        return $resultRedirect->setPath('*/*/edit', ['id' => $this->getRequest()->getParam('id')]);
+                    } else {
+                        return $resultRedirect->setPath('*/*/');
+                    }
+                }
             }
+            //#################################################
             try {
-                $fileExist = $this->getRequest()->getFiles('image')['tmp_name'];
                 $target = $this->mediaDirectory->getAbsolutePath();
                 if (isset($data['image']['delete']) AND $data['image']['delete']==1) {
-                    $fileName = $data['image']['value'];
-                    if ($this->file->isExists($target . $fileName)) {
-                        $this->file->deleteFile($target . $fileName);
+                    if ($fileExist AND !empty($fileExist)) {
+                        $fileName = $data['image']['value'];
+                        if ($this->file->isExists($target . $fileName)) {
+                            $this->file->deleteFile($target . $fileName);
+                        }
+                    } else{
+                        $this->messageManager->addError("Can not delete existing image, without uploading new one...");
+                        return $resultRedirect->setPath('*/*/edit', ['id' => $this->getRequest()->getParam('id')]);
                     }
                 }
                 // file upload to media folder
                 if ($fileExist AND !empty($fileExist)) {
-                    $uploader = $this->fileUploaderFactory->create(['fileId' => 'image']);
                     $uploader->setAllowedExtensions(['jpg', 'png', 'jpeg']);
                     $uploader->setAllowRenameFiles(true);
-                    $this->newFileName = 'ngSlide_' . time() . '.' . $uploader->getFileExtension();
+                    $this->newFileName = 'ngSlide_' . time() . '.' . $uploadedExt;
                     $target = $target . $this->slidesFolderPath;
                     $uploader->save($target, $this->newFileName);
                     $data['image'] = $this->slidesFolderPath . $this->newFileName;
@@ -92,7 +112,6 @@ class Save extends Action
                 $model->save();
                 $this->messageManager->addSuccess(__('Data has been successfully saved.'));
                 $this->session->setFormData(false);
-                $resultRedirect = $this->resultRedirectFactory->create();
                 if ($this->getRequest()->getParam('back')) {
                     return $resultRedirect->setPath(
                         'ng_slider/slide/edit',
@@ -106,7 +125,7 @@ class Save extends Action
             } catch (\RuntimeException $e) {
                 $this->messageManager->addError($e->getMessage());
             } catch (\Exception $e) {
-                $this->messageManager->addException($e, __('Something went wrong while saving the data.'));
+                $this->messageManager->addException($e, __('Something went wrong, unable to save data'));
             }
 
             $this->_getSession()->setFormData($data);

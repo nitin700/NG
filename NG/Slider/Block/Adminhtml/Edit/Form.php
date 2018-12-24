@@ -99,7 +99,7 @@ class Form extends Generic
                 'title' => __('Image'),
                 'label' => __('Image'),
                 'name' => 'image',
-                'note' => 'Allow image type: jpg, jpeg, gif, png',
+                'note' => 'Allow image type: jpg, jpeg, png',
                 'required' => true
             ]
         )->setAfterElementHtml('
