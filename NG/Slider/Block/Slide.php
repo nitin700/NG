@@ -74,10 +74,10 @@ class Slide extends Template
         //create image factory...
         $imageResize = $this->imageFactory->create();
         $imageResize->open($absolutePath);
-        $imageResize->constrainOnly(TRUE);
-        $imageResize->keepTransparency(TRUE);
-        $imageResize->keepFrame(FALSE);
-        $imageResize->keepAspectRatio(FALSE);
+        $imageResize->constrainOnly(true);
+        $imageResize->keepTransparency(true);
+        $imageResize->keepFrame(false);
+        $imageResize->keepAspectRatio(false);
         $imageResize->resize($width, $height);
         //destination folder
         $destination = $imageResized ;

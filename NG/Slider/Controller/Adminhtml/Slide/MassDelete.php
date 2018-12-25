@@ -35,7 +35,7 @@ class MassDelete extends Action
     {
         $deleteids = $this->getRequest()->getPost('id');
         $collection = $this->collectionFactory->create();
-        $collection->addFieldToFilter('id', array('in'=>$deleteids));
+        $collection->addFieldToFilter('id', ['in'=>$deleteids]);
         $delete = 0;
         foreach ($collection as $item) {
             $item->delete();

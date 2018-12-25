@@ -14,7 +14,7 @@ use Magento\Framework\App\Config\ScopeConfigInterface;
 
 class Config
 {
-    private $optionArray = array(
+    private $optionArray = [
         'isModuleEnabled'=>'slider/general/enabled',
         'mode'=>'slider/settings/transitionMode',
         'speed'=>'slider/settings/transitionSpeed',
@@ -27,7 +27,7 @@ class Config
         'isResizeEnable'=>'slider/resizeimage/enable',
         'width'=>'slider/resizeimage/width',
         'height'=>'slider/resizeimage/height'
-    );
+    ];
 
     private $config;
 

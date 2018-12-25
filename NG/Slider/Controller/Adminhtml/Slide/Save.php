@@ -25,7 +25,7 @@ class Save extends Action
     protected $slidesFolderPath;
     protected $file;
     protected $session;
-    protected $allowedExt = array('jpg', 'png', 'jpeg');
+    protected $allowedExt = ['jpg', 'png', 'jpeg'];
 
     /*
      * Save constructor.
@@ -71,7 +71,7 @@ class Save extends Action
             /*
              * below code to manage unsupported image extension
              */
-            if ($fileExist AND !empty($fileExist)) {
+            if ($fileExist && !empty($fileExist)) {
                 $uploader = $this->fileUploaderFactory->create(['fileId' => 'image']);
                 $uploadedExt = $uploader->getFileExtension();
                 if (!in_array($uploadedExt, $this->allowedExt)) {
@@ -86,19 +86,19 @@ class Save extends Action
             //#################################################
             try {
                 $target = $this->mediaDirectory->getAbsolutePath();
-                if (isset($data['image']['delete']) AND $data['image']['delete']==1) {
-                    if ($fileExist AND !empty($fileExist)) {
+                if (isset($data['image']['delete']) && $data['image']['delete']==1) {
+                    if ($fileExist && !empty($fileExist)) {
                         $fileName = $data['image']['value'];
                         if ($this->file->isExists($target . $fileName)) {
                             $this->file->deleteFile($target . $fileName);
                         }
-                    } else{
+                    } else {
                         $this->messageManager->addError("Can not delete existing image, without uploading new one...");
                         return $resultRedirect->setPath('*/*/edit', ['id' => $this->getRequest()->getParam('id')]);
                     }
                 }
                 // file upload to media folder
-                if ($fileExist AND !empty($fileExist)) {
+                if ($fileExist && !empty($fileExist)) {
                     $uploader->setAllowedExtensions(['jpg', 'png', 'jpeg']);
                     $uploader->setAllowRenameFiles(true);
                     $this->newFileName = 'ngSlide_' . time() . '.' . $uploadedExt;

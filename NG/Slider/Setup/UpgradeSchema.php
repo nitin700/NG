@@ -29,7 +29,7 @@ class UpgradeSchema implements UpgradeSchemaInterface
         $setup->startSetup();
         $tableName = $setup->getTable("ng_slider");
         $setupTableExist = $setup->getConnection()->isTableExists($tableName);
-        if ($setupTableExist == true AND version_compare($context->getVersion(), '1.0.1', '<')) {
+        if ($setupTableExist == true and version_compare($context->getVersion(), '1.0.1', '<')) {
             $table = $setup->getConnection();
             $table->addColumn(
                 $tableName,
@@ -43,7 +43,7 @@ class UpgradeSchema implements UpgradeSchemaInterface
                 ]
             );
         }
-        if ($setupTableExist == true AND version_compare($context->getVersion(), '1.0.2', '<')) {
+        if ($setupTableExist == true and version_compare($context->getVersion(), '1.0.2', '<')) {
             $table = $setup->getConnection();
             $table->addColumn(
                 $tableName,

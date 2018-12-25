@@ -13,28 +13,28 @@
 
 $moduleEnable = $block->getConfigValue('isModuleEnabled');
 
-if(isset($moduleEnable) && $moduleEnable == true) {
+if (isset($moduleEnable) && $moduleEnable == true) {
 ?>
 <div class='container'>
         <ul class="ngslider">
             <?php
             $imageResizeEnable = $block->getConfigValue('isResizeEnable');
-            if(isset($imageResizeEnable) && ($imageResizeEnable == 'true')) {
+            if (isset($imageResizeEnable) && ($imageResizeEnable == 'true')) {
                 $imageWidth = $block->getConfigValue('width');
                 $imageHeight = $block->getConfigValue('height');
             }
-            foreach ($block->getSlides() as $slide):
+            foreach ($block->getSlides() as $slide) :
                 $slideUrl = $block->getUrl() . "pub/media/" . $slide->getImage();
-                if(isset($imageResizeEnable) && $imageResizeEnable == 'true'){
-                    $block->resize($slide->getImage(),$imageWidth, $imageHeight);
+                if (isset($imageResizeEnable) && $imageResizeEnable == 'true') {
+                    $block->resize($slide->getImage(), $imageWidth, $imageHeight);
                 }
                 $caption = $slide->getDescription();
                 $url= $slide->getUrl();
-                if(empty($url)){
+                if (empty($url)) {
                     echo "<li>
                        <img class='ng_wrapper_img' src='". $slideUrl ."' title='".$caption."'>
                      </li>";
-                }else {
+                } else {
                     echo "<li>
                        <a href='" . $url . "'><img class='ng_wrapper_img' src='" . $slideUrl . "' title='" . $caption . "'></a>
                      </li>";
@@ -45,29 +45,29 @@ if(isset($moduleEnable) && $moduleEnable == true) {
 </div>
 
 <script>// <![CDATA[
-	require(['jquery', 'ngslider'],function($){
-		$(document).ready(function() {
-			$('.ngslider').ngSlider({
-				mode : '<?php echo $block->getConfigValue('mode') ?>',
+    require(['jquery', 'ngslider'],function($){
+        $(document).ready(function() {
+            $('.ngslider').ngSlider({
+                mode : '<?php echo $block->getConfigValue('mode') ?>',
                 speed :<?php echo $block->getConfigValue('speed') ?>,
-				pause : 4000,
-				controls: <?php echo $block->getConfigValue('controls') ?>,
+                pause : 4000,
+                controls: <?php echo $block->getConfigValue('controls') ?>,
                 captions :<?php echo $block->getConfigValue('captions') ?>,
                 auto :<?php echo $block->getConfigValue('auto') ?>,
                 autoControls :<?php echo $block->getConfigValue('autoControls') ?>,
                 autoControlsCombine :<?php echo $block->getConfigValue('autoControlsCombine') ?>,
                 autoStart :<?php echo $block->getConfigValue('autoStart') ?>,
                 adaptiveHeight : true
-			});
+            });
             $(".ng-pager").hide();
-		});
+        });
     });
-	// ]]>
+    // ]]>
 </script>
 <style>
-    <?php if(isset($imageResizeEnable) && ($imageResizeEnable == 'true')) { ?>
+    <?php if (isset($imageResizeEnable) && ($imageResizeEnable == 'true')) { ?>
     .ng_wrapper_img {max-height:<?php echo $imageHeight; ?>px;}
-    <?php } else{ ?>
+    <?php } else { ?>
     .ng_wrapper_img {max-height:100%;}
     <?php } ?>
 </style>
